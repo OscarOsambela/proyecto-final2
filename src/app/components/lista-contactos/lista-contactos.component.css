@@ -1,0 +1,15 @@
+.contacto:hover {
+  cursor: pointer;
+}
+.container-contacto {
+  border: 1px solid;
+  width: 20%;
+  margin: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 4px 4px 11px rgb(0 0 0 / 40%);
+}
+h6 {
+  margin: 0;
+  font-size: 20px;
+}

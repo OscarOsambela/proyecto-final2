@@ -1,0 +1,73 @@
+<!-- Directivas propias de Angular -->
+
+<p [ngStyle]="{ fontSize: '40px', color: 'tomato', fontWeight: 'bolder' }">
+  Lista de elementos
+</p>
+
+<p ngClass="underline">Mostras lista y mostrar varios elementos</p>
+
+<p [ngClass]="['underline', 'small']">Aún no tenemos tareas</p>
+<p [ngClass]="{ underline: false, small: true }">Crear un elemento</p>
+
+<!-- Directivas estructurales -->
+
+<!-- IF ELSE -->
+<button (click)="cambiarCargando()">
+  {{ cargando ? "Terminar carga" : "Iniciar carga" }}
+</button>
+
+<ng-container *ngIf="cargando; else templateCargando">
+  <p>Todo listo</p>
+</ng-container>
+<ng-template #templateCargando>
+  <p>Cargando...</p>
+  <p>Espera a que termine el proceso</p>
+</ng-template>
+
+<!-- FOR -->
+<ul *ngFor="let item of listaElementos; let i = index; let even = even">
+  <li
+    [ngStyle]="
+      even
+        ? { backgroundColor: '#d4d1d1', width: '85px' }
+        : { backgroundColor: 'gray', width: '85px' }
+    "
+  >
+    <p>ID{{ i + 1 }}</p>
+    <p>{{ item.nombre }} - {{ item.precio }}</p>
+    <p>{{ item.description }}</p>
+  </li>
+</ul>
+
+<!-- SWITCH -->
+<div [ngSwitch]="opcion">
+  <p [id]="1" *ngSwitchCase="1">Opción 1</p>
+  <p [id]="2" *ngSwitchCase="2">Opción 2</p>
+  <p [id]="3" *ngSwitchCase="3">Opción 3</p>
+  <p [id]="4" *ngSwitchCase="4">Opción 4</p>
+  <p *ngSwitchDefault>Ninguna opción</p>
+</div>
+
+<div>
+  <input type="radio" name="opcion" (click)="escogerOpcion(1)" />Opción 1
+  <input type="radio" name="opcion" (click)="escogerOpcion(2)" />Opción 2
+  <input type="radio" name="opcion" (click)="escogerOpcion(3)" />Opción 3
+  <input type="radio" name="opcion" (click)="escogerOpcion(4)" />Opción 4
+  <input type="radio" checked name="opcion" (click)="escogerOpcion(0)" />Ocultar
+</div>
+
+<!-- CONCATENAR DIRECTIVAS -->
+
+<div *ngFor="let item of listaElementos; let i = index; let even = even">
+  <div *ngIf="item.precio > 20"
+    [ngStyle]="
+      even
+        ? { backgroundColor: '#d4d1d1', width: '85px' }
+        : { backgroundColor: 'gray', width: '85px' }
+    "
+  >
+    <p>ID{{ i + 1 }}</p>
+    <p>{{ item.nombre }} - {{ item.precio }}</p>
+    <p>{{ item.description }}</p>
+  </div>
+</div>
